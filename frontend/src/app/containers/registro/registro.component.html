@@ -4,7 +4,7 @@
     <input type="text" class="form-control" #username="ngModel" name="username" id="username" ngModel required
       minlength="7">
   </div>
-  <div *ngIf="username.errors?.required && username.dirty" class="alert alert-warning">
+  <div *ngIf="username.errors?.required && username.touched" class="alert alert-warning">
     username es requerido.
   </div>
 
@@ -13,11 +13,14 @@
   </div>
   <div class="form-group">
     <label for="username">email</label>
-    <input type="text" class="form-control" name="email" id="email" ngModel>
+    <input type="text" class="form-control" name="email" id="email" #email="ngModel"  ngModel required>
+  </div>
+  <div *ngIf="email.errors?.required && email.touched" class="alert alert-warning">
+    Email es requerido.
   </div>
   <div class="form-group">
     <label for="password">Contraseña</label>
-    <input type="password" class="form-control" name="password" id="password" ngModel>
+    <input type="password" class="form-control" name="password" id="password" ngModel required>
   </div>
   <button type="submit" class="btn btn-dark">Submit</button>
   <!-- <div class="alert alert-warning" *ngIf="!registerForm.valid">

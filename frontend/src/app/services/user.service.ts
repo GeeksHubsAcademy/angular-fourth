@@ -11,4 +11,7 @@ export class UserService {
   login(user:object):Observable<any>{
     return this.httpClient.post('http://localhost:3000/users/login',user);
   }
+  register(user:object){
+    return this.httpClient.post('http://localhost:3000/users/register',user);
+  }
 }

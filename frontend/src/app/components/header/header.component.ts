@@ -7,7 +7,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
+  admins =['superAdmin','admin','dios'];
   constructor(public userService:UserService) { }
 
   ngOnInit(): void {

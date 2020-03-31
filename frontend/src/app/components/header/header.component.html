@@ -18,12 +18,23 @@
             <a class="dropdown-item" routerLink="/categories/add">Añadir Categoría</a>
           </div>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/login">Login <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/signup">Registro</a>
-        </li>
+        
+        <div class="LoggedIn row" *ngIf="userService.user?.id">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/profile">{{userService.user.username}} <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/logout">Desconectarse</a>
+          </li>
+        </div>
+        <div class="notLoggedIn row" *ngIf="!userService.user?.id">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/login">Login <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/signup">Registro</a>
+          </li>
+        </div>
       </ul>
       <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Buscar producto" aria-label="Search">

@@ -6,12 +6,34 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-
-  constructor(public httpClient:HttpClient) { }
-  login(user:object):Observable<any>{
-    return this.httpClient.post('http://localhost:3000/users/login',user);
+  private token: string = "";
+  private user:object={};
+  constructor(public httpClient: HttpClient) { }
+  login(user: object): Observable<any> {
+    return this.httpClient.post('http://localhost:3000/users/login', user);
   }
-  register(user:object){
-    return this.httpClient.post('http://localhost:3000/users/register',user);
+  register(user: object) {
+    return this.httpClient.post('http://localhost:3000/users/register', user);
+  }
+  setToken(token: string): void {
+    this.token = token;
+  }
+  getToken(): string {
+    return this.token;
+  }
+  setUser(user: object): void {
+    this.user = user;
+  }
+  getUser(): object {
+    return this.user;
+  }
+  getUserInfo(token) {
+    //preguntamos al endpoint si ese token corresponde a un usuario y de ser así que nos traiga la información del usuario (objeto)
+    return this.httpClient.get('http://localhost:3000/users/info', {
+      headers: {
+        authorization: token
+      }
+    })
+    
   }
 }

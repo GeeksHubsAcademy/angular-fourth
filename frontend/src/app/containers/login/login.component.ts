@@ -21,13 +21,16 @@ export class LoginComponent implements OnInit {
   }
   login(event) {
     event.preventDefault();
-    console.log(this.user)
     this.userService.login(this.user)
       .subscribe(
         (res: HttpResponse<any>) => {
           //en redirectRoute guardamos la ruta a redirigir en función de si el usuario que se ha conectado es admin o no
-          const redirectRoute = res['user']['role']==='admin' ? '/admin':'/';
+          const admins =['superAdmin','admin','dios'];
+          const redirectRoute = admins.includes(res['user']['role']) ? '/admin':'/';
           this.successMsg=res['message'];
+          this.userService.setUser(res['user']);
+          this.userService.setToken(res['token']);
+          localStorage.setItem('authToken',res['token']);
           setTimeout(() => this.router.navigate([redirectRoute]) , 2500);
         },
         (error: HttpErrorResponse) => {

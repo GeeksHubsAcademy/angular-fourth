@@ -8,13 +8,15 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LoginComponent } from './containers/login/login.component';
 import { RegistroComponent } from './containers/registro/registro.component';
+import { ProductsComponent } from './containers/products/products.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     LoginComponent,
-    RegistroComponent
+    RegistroComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,

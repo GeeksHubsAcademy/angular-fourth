@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { ProductService } from 'src/app/services/product.service';
 
@@ -7,15 +7,13 @@ import { ProductService } from 'src/app/services/product.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent  {
   public admins =['superAdmin','admin','dios'];
   constructor(
     public userService:UserService,
     public productService:ProductService
     ) { }
 
-  ngOnInit(): void {
-  }
   searchProducts(event:any){
    const searchValue= event.target.searchInput.value;
    if(!searchValue){

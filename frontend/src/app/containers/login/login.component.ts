@@ -27,10 +27,15 @@ export class LoginComponent implements OnInit {
           //en redirectRoute guardamos la ruta a redirigir en función de si el usuario que se ha conectado es admin o no
           const admins =['superAdmin','admin','dios'];
           const redirectRoute = admins.includes(res['user']['role']) ? '/admin':'/';
+          //guarda el mensaje de éxito en la variable successMsg
           this.successMsg=res['message'];
+          // guardamos el usuario en el userService
           this.userService.setUser(res['user']);
+          // guardamos el token en el userService
           this.userService.setToken(res['token']);
+          // guardamos el token en el localStorage
           localStorage.setItem('authToken',res['token']);
+          
           setTimeout(() => this.router.navigate([redirectRoute]) , 2500);
         },
         (error: HttpErrorResponse) => {
